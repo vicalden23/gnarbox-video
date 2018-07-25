@@ -1,7 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View, WebView, Platform } from 'react-native';
+import playVideo from './actions';
 
 export default class App extends React.Component {
+
+  componentDidMount() {
+    this.props.playVideo()
+  }
+
   render() {
     return (
       <View style={styles.container}>
