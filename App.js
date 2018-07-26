@@ -1,39 +1,21 @@
-import React from 'react';
-import { StyleSheet, Text, View, WebView, Platform } from 'react-native';
-import playVideo from './actions';
+import React, { Component } from 'react';
+import { Provider } from 'react-redux';
 
-export default class App extends React.Component {
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
-  componentDidMount() {
-    this.props.playVideo()
-  }
+import reducers from './reducers';
 
+const store = createStore(reducers, applyMiddleware(thunk));
+
+import VideoPlayer from './VideoPlayer'
+
+export default class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <WebView
-          style={ styles.WebViewContainer }
-          javaScriptEnabled={true}
-          domStorageEnabled={true}
-          source={{uri: 'https://www.youtube.com/watch?v=3NhHqPA8nIs' }}
-        />
-      </View>
+      <Provider store={store}>
+          <VideoPlayer />
+      </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    // flex: 1,
-    // backgroundColor: '#fff',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    height: 300
-  },
-
-  WebViewContainer: {
- 
-    marginTop: (Platform.OS == 'ios') ? 50 : 0,
- 
-  },
-});
