@@ -1,2 +1,2 @@
-export const PLAYING = true;
-export const PAUSED = false;
+export const PLAYING = 'PLAYING';
+export const PAUSED = 'PAUSED';
