@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
 
-import playReducer from './playReducer'
+import playReducer from './playReducers'
 
-export default combineReducers({playReducer})
+export default combineReducers({playing: playReducer})
